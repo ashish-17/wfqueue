@@ -104,4 +104,7 @@ static inline int randomNumber(int min, int max) {
     return (min + (rand() % (max - min + 1)));
 }	
 
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+
 #endif /* INCLUDES_UTILS_H_ */
