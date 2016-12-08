@@ -13,33 +13,33 @@
 struct wf_queue_node;
 
 typedef struct wf_queue_node {
-	struct wf_queue_node* next;
-	int enq_tid;
-	int deq_tid; // use CAS to update it
-	int sanityData;
+	volatile struct wf_queue_node *next;
+	volatile int enq_tid;
+	volatile int deq_tid; // use CAS to update it
+	volatile int sanityData;
 } wf_queue_node_t;
 
 typedef struct wf_queue_head {
-	wf_queue_node_t* head;
-	wf_queue_node_t* tail;
+	volatile wf_queue_node_t* head;
+	volatile wf_queue_node_t* tail;
 } wf_queue_head_t;
 
 /*
  * One for each thread to sync operations among threads.
  */
 typedef struct wf_queues_op_desc {
-	long phase;
-	uint8_t pending;
-	uint8_t enqueue;
-	wf_queue_node_t * node;
-	wf_queue_node_t * last; // this points to last node of the list that is to be enqueued during bulk enqueue
+	volatile long phase;
+	volatile uint8_t pending;
+	volatile uint8_t enqueue;
+	volatile wf_queue_node_t * node;
+	volatile wf_queue_node_t * last; // this points to last node of the list that is to be enqueued during bulk enqueue
 	wf_queue_head_t* queue;
 } wf_queue_op_desc_t;
 
 typedef struct wf_queues_op_head {
 	int num_threads;
-	wf_queue_op_desc_t** ops;
-	wf_queue_op_desc_t** ops_reserve;
+	volatile wf_queue_op_desc_t** ops;
+	volatile wf_queue_op_desc_t** ops_reserve;
 } wf_queue_op_head_t;
 
 wf_queue_head_t* create_wf_queue(wf_queue_node_t* sentinel);

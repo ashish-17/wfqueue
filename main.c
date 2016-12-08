@@ -52,7 +52,7 @@ void* test_func_wf_queue(void* thread_data) {
         x = wf_dequeue(data->q, data->op_desc, data->thread_id);
         val = (dummy_data_wf_queue_t*) list_entry(x, dummy_data_wf_queue_t, node);
 
-        if (val->data != x->sanityData) {
+        if (x == NULL || val->data != x->sanityData) {
             perThreadSanityFails++;
         }
     }
@@ -70,8 +70,8 @@ void test_wf_queue() {
     LOG_PROLOG();
 
     const int COUNT_THREADS = 10;
-    const int COUNT_ENQUEUE_OPS = 90000;
-    const int COUNT_DEQUEUE_OPS = 10000;
+    const int COUNT_ENQUEUE_OPS = 900000;
+    const int COUNT_DEQUEUE_OPS = 900000;
     dummy_data_wf_queue_t *dummy_data = (dummy_data_wf_queue_t*) malloc(sizeof(dummy_data_wf_queue_t) * (COUNT_THREADS*COUNT_ENQUEUE_OPS + 1));
 
     int i = 0;
@@ -97,7 +97,6 @@ void test_wf_queue() {
         thread_data[i].op_desc = op_desc;
         thread_data[i].dummy_data = dummy_data + i*COUNT_ENQUEUE_OPS+1;
 
-        LOG_INFO("Creating thread %d", i);
         pthread_create(threads + i, NULL, test_func_wf_queue, thread_data+i);
     }
 

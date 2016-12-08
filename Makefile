@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O3 -Wall -I. -lpthread -lrt -DLOGGING_LEVEL=LOG_LEVEL_DEBUG
+CFLAGS = -O0 -Wall -I. -lpthread -lrt -DLOGGING_LEVEL=LOG_LEVEL_INFO
 RM = rm -f
 
 DEPS = includes/utils.h includes/wfqueue.h includes/logger.h includes/list.h
