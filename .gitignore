@@ -19,6 +19,7 @@
 *.so
 *.so.*
 *.dylib
+*.fuse*
 
 # Executables
 *.exe
@@ -31,3 +32,4 @@
 # Debug files
 *.dSYM/
 *.su
+main
