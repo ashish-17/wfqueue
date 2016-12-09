@@ -5,8 +5,8 @@
  *      Author: ashish
  */
 
-#ifndef INCLUDES_QUEUE_H_
-#define INCLUDES_QUEUE_H_
+#ifndef INCLUDES_WFQUEUE_H_
+#define INCLUDES_WFQUEUE_H_
 
 #include <stdint.h>
 
@@ -56,4 +56,4 @@ wf_queue_node_t* wf_dequeue(wf_queue_head_t *q, wf_queue_op_head_t* op_desc, int
 
 int wf_queue_count_nodes(wf_queue_head_t* head);
 
-#endif /* INCLUDES_QUEUE_H_ */
+#endif /* INCLUDES_WFQUEUE_H_ */
