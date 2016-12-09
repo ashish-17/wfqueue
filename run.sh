@@ -18,7 +18,7 @@ find . -type f -name '*.csv' -delete
 
 make
 
-thread_count=(1 2 4 8 16 24 32 40 48 56 64 72)
+thread_count=(1 2 4 8 16 24 32 40 48 56 64)
 ops_count=(100000 200000 400000 600000 800000 1000000 1200000 160000 2000000)
 file_prefix="stats"
 
